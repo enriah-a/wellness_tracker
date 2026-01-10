@@ -5,16 +5,15 @@ with open('wellness-agent/data/food_protein.json', 'r') as f:
     data = json.load(f)
 
 def load_food_data():
-    #Initialize dicts: food_category maps food to category, food_protein maps food to protein value"""
     food_category = {}
-    food_protein = {}
+    food_info = {} # Renamed from food_protein for clarity
 
     for category, foods in data.items():
-        for food, protein in foods.items():
+        for food, info in foods.items():
             food_category[food] = category
-            food_protein[food] = protein
+            food_info[food] = info # This now stores {"protein": X, "meal_type": [...], ...}
 
-    return food_category, food_protein
+    return food_category, food_info
 
 
 def log_meals():

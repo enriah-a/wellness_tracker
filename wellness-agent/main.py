@@ -1,26 +1,37 @@
-"""
-Main entry point for the Wellness Agent.
-Handles user input for meal logging and runs the agent loop.
-"""
-
 from agent.loader import load_food_data, log_meals
+from agent.reasoner import suggest_protein_additions
 from agent.observer import calculate_total_protein_intake
-
 
 def main():
     print("Welcome to the Personal Wellness Agent!")
-    # Loading food DB
-    food_category, food_protein = load_food_data()
-    _, food_list = log_meals() #returns foop_list i.e. Breakfast:  <tuples>
-    #I want to flatten this for easy parsing, before passing to calculat_protein_intake
+    
+    # 1. Load the food database
+    # food_info now contains the full dictionary for each item
+    food_category, food_info = load_food_data()
+
+    # 2. Log meals
+    # log_meals returns (raw_text_dict, parsed_food_list_dict)
+    _, food_list = log_meals() 
+
+    # 3. Flatten the meal log
+    # This prevents 'breakfast' from being treated as a food
     flat_meal_log = {}
     for meal_name, items in food_list.items():
         for food, qty in items:
-            # If the same food is eaten in different meals, sum the quantities
-            flat_meal_log[food] = flat_meal_log.get(food, 0) + qty 
-    total_protein = calculate_total_protein_intake(food_protein,flat_meal_log)
+            # Sum quantities if same food is eaten in different meals
+            flat_meal_log[food] = flat_meal_log.get(food, 0) + qty
+    
+    # 4. Calculate total protein
+    total_protein = calculate_total_protein_intake(food_info, flat_meal_log)
 
-    print(f"\nYou have eaten {total_protein}g of protein today.")
-    # # TODO: Pass observations to reasoner and actor for advice
+    print(f"\nTotal Protein Intake: {total_protein}g")
+
+    # 5. Provide suggestions if goal isn't met (e.g., goal of 50g)
+    if total_protein < 80:
+        print(f"You are {50 - total_protein}g short of your 50g goal.")
+        suggest_protein_additions(food_info)
+    else:
+        print("Great job! You've hit your protein target for the day.")
+
 if __name__ == "__main__":
     main()
