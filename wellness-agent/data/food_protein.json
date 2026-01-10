@@ -16,7 +16,7 @@
 
   "probiotics": {
     "dahi": {"protein": 6, "meal_type": ["breakfast", "snack"], "vata_friendly": true},
-    "greek_yoghurt": {"protein": 15, "meal_type": ["breakfast", "snack"], "vata_friendly": true}
+    "greek_yoghurt": {"protein": 10, "meal_type": ["breakfast", "snack"], "vata_friendly": true}
   },
 
   "dairy_and_protein": {

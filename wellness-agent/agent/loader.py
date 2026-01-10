@@ -35,15 +35,24 @@ def log_meals():
     return meals, food_list
 
 def parse_meal(meal_text):
+    # Split by '+' to get individual food items
     items = meal_text.split('+')
     meal_items = []
+    
     for item in items:
-        parts = item.strip().split(' ', 1)
-        if len(parts) == 2 and parts[0].isdigit():
+        item = item.strip()
+        parts = item.split(' ')
+        
+        # Check if the first word is a number (the quantity)
+        if parts[0].isdigit():
             qty = int(parts[0])
-            food = parts[1].strip().replace(' ', '_')
+            # Join the remaining words with underscores (e.g., "greek yoghurt" -> "greek_yoghurt")
+            food = "_".join(parts[1:]).strip()
         else:
+            # No number provided, assume quantity is 1
             qty = 1
-            food = parts[0].strip().replace(' ', '_')
+            # Join all words with underscores
+            food = "_".join(parts).strip()
+            
         meal_items.append((food, qty))
     return meal_items

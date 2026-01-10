@@ -10,7 +10,8 @@ def calculate_total_protein_intake(food_protein,flat_meal_log):
     total_protein = 0
     for meal_item, meal_qty in flat_meal_log.items():
             if meal_item in food_protein:
-                total_protein = total_protein + (meal_qty*food_protein[meal_item])
+                protein_per_unit = food_protein[meal_item]["protein"]
+                total_protein += (meal_qty * protein_per_unit)
             else:
                 print(f"Warning: {meal_item} not found in food database.")
     return total_protein

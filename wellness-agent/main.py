@@ -11,9 +11,13 @@ def main():
     print("Welcome to the Personal Wellness Agent!")
     # Loading food DB
     food_category, food_protein = load_food_data()
-    meal_log = log_meals() #returns foop_list i.e. Breakfast:  <tuples>
+    _, food_list = log_meals() #returns foop_list i.e. Breakfast:  <tuples>
     #I want to flatten this for easy parsing, before passing to calculat_protein_intake
-    flat_meal_log = {food: qty for meal_items in meal_log.values() for food, qty in meal_items}
+    flat_meal_log = {}
+    for meal_name, items in food_list.items():
+        for food, qty in items:
+            # If the same food is eaten in different meals, sum the quantities
+            flat_meal_log[food] = flat_meal_log.get(food, 0) + qty 
     total_protein = calculate_total_protein_intake(food_protein,flat_meal_log)
 
     print(f"\nYou have eaten {total_protein}g of protein today.")
