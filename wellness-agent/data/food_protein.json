@@ -11,7 +11,7 @@
     "idli": {"protein": 2, "meal_type": ["breakfast", "lunch"], "vata_friendly": true},
     "dosa": {"protein": 4, "meal_type": ["breakfast", "lunch"], "vata_friendly": true},
     "roti": {"protein": 3, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
-    "indrayani_rice": {"protein": 3, "meal_type": ["lunch", "dinner"], "vata_friendly": true}
+    "rice": {"protein": 3, "meal_type": ["lunch", "dinner"], "vata_friendly": true}
   },
 
   "probiotics": {
