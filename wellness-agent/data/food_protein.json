@@ -7,7 +7,6 @@
     "moong_daal_khichdi": {"protein": 7, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
     "chicken_gravy": {"protein": 15, "meal_type": ["lunch", "dinner"], "vata_friendly": true}
   },
-
   "staples": {
     "idli": {"protein": 2, "meal_type": ["breakfast", "lunch"], "vata_friendly": true},
     "dosa": {"protein": 4, "meal_type": ["breakfast", "lunch"], "vata_friendly": true},
@@ -16,14 +15,12 @@
     "white_toast": {"protein": 2, "meal_type": ["breakfast", "snack"], "vata_friendly": true},
     "whole_wheat_toast": {"protein": 4, "meal_type": ["breakfast", "snack"], "vata_friendly": true}
   },
-
   "probiotics": {
     "dahi": {"protein": 6, "meal_type": ["breakfast", "snack"], "vata_friendly": true},
     "greek_yoghurt": {"protein": 10, "meal_type": ["breakfast", "snack"], "vata_friendly": true}
   },
-
   "dairy_and_protein": {
-    "milk_amul_taaza_200ml": {"protein": 7, "meal_type": ["breakfast", "snack", "dinner"], "vata_friendly": true},
+    "milk": {"protein": 7, "meal_type": ["breakfast", "snack", "dinner"], "vata_friendly": true},
     "paneer_burji": {"protein": 19, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
     "palak_paneer": {"protein": 13, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
     "protein_powder": {"protein": 24, "meal_type": ["breakfast", "snack"], "vata_friendly": true},
@@ -32,14 +29,13 @@
     "tempeh": {"protein": 14, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
     "chicken_sausages_2_pcs": {"protein": 10, "meal_type": ["breakfast", "snack"], "vata_friendly": false},
     "ghee": {"protein": 0, "meal_type": ["breakfast", "lunch", "dinner"], "vata_friendly": true},
-    "grilled_chicken_breast": {"protein": 25, "meal_type": ["lunch", "dinner"], "vata_friendly": true}
+    "grilled_chicken_breast": {"protein": 25, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
+    "zorabian_seekh_kebab": {"protein": 8, "meal_type": ["snack", "lunch", "dinner"], "vata_friendly": true}
   },
-
   "breakfast_cereals": {
     "oats_with_milk": {"protein": 11, "meal_type": ["breakfast"], "vata_friendly": true},
     "masala_oats": {"protein": 5, "meal_type": ["breakfast", "snack"], "vata_friendly": true}
   },
-
   "sabzi": {
     "baingan_bharta": {"protein": 2, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
     "aloo_beans": {"protein": 3, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
@@ -48,15 +44,14 @@
     "cooked_sprouts": {"protein": 10, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
     "bhindi_masala": {"protein": 2, "meal_type": ["lunch", "dinner"], "vata_friendly": true}
   },
-
   "fruits": {
     "apple": {"protein": 0.5, "meal_type": ["snack"], "vata_friendly": true},
     "banana": {"protein": 1, "meal_type": ["snack"], "vata_friendly": true},
     "strawberries": {"protein": 1, "meal_type": ["snack"], "vata_friendly": true},
+    "strawberry": {"protein": 1, "meal_type": ["snack"], "vata_friendly": true},
     "tender_coconut_water": {"protein": 1, "meal_type": ["snack"], "vata_friendly": true},
     "alphonso_mango": {"protein": 1, "meal_type": ["snack"], "vata_friendly": true}
   },
-
   "dry_fruits": {
     "date": {"protein": 0.5, "meal_type": ["snack"], "vata_friendly": true},
     "almond": {"protein": 6, "meal_type": ["snack"], "vata_friendly": true},
@@ -66,26 +61,27 @@
     "mixed_seeds": {"protein": 8, "meal_type": ["snack"], "vata_friendly": true},
     "date_almond_laddoo": {"protein": 4, "meal_type": ["snack"], "vata_friendly": true}
   },
-
   "beverages": {
     "black_coffee": {"protein": 0, "meal_type": ["breakfast", "snack"], "vata_friendly": false},
     "coffee_milk_sugar": {"protein": 3, "meal_type": ["breakfast", "snack"], "vata_friendly": true},
     "masala_chai_milk": {"protein": 3, "meal_type": ["breakfast", "snack"], "vata_friendly": true}
   },
-
+  "health_drinks": {
+    "soaked_black_raisins_saffron_water": {"protein": 0.5, "meal_type": ["breakfast", "snack"], "vata_friendly": true},
+    "lipton_cranberry_strawberry_tea": {"protein": 0, "meal_type": ["breakfast", "snack"], "vata_friendly": true},
+    "organic_india_tulsi_honey_ginger_tea": {"protein": 0, "meal_type": ["breakfast", "snack"], "vata_friendly": true}
+  },
   "snacks_and_sides": {
     "coconut_chutney": {"protein": 2, "meal_type": ["breakfast", "lunch"], "vata_friendly": true},
     "hummus": {"protein": 3, "meal_type": ["snack", "lunch"], "vata_friendly": true},
     "peanut_butter": {"protein": 4, "meal_type": ["breakfast", "snack"], "vata_friendly": true},
     "TWT_chocolate_bar": {"protein": 6, "meal_type": ["snack"], "vata_friendly": true}
   },
-
   "legumes": {
     "rajma": {"protein": 11, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
     "chole": {"protein": 10, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
     "sprouts": {"protein": 10, "meal_type": ["lunch", "dinner"], "vata_friendly": true}
   },
-
   "order_in_and_outside_food": {
     "chicken_momos_steamed": {"protein": 12, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
     "chicken_sandwich": {"protein": 20, "meal_type": ["lunch", "dinner"], "vata_friendly": false},
@@ -97,14 +93,13 @@
     "mutton_biryani": {"protein": 12, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
     "salmon_sushi": {"protein": 6, "meal_type": ["lunch", "dinner", "snack"], "vata_friendly": true}
   },
-
   "desserts": {
     "chocolate_ice_cream": {"protein": 4, "meal_type": ["snack", "dessert"], "vata_friendly": false},
     "vanilla_ice_cream": {"protein": 3, "meal_type": ["snack", "dessert"], "vata_friendly": false},
     "mango_ice_cream": {"protein": 2.5, "meal_type": ["snack", "dessert"], "vata_friendly": false},
-    "gajar_halwa": {"protein": 3, "meal_type": ["snack", "dessert"], "vata_friendly": false}
+    "gajar_halwa": {"protein": 3, "meal_type": ["snack", "dessert"], "vata_friendly": false},
+    "gulab_jamun": {"protein": 2, "meal_type": ["snack", "dessert"], "vata_friendly": false}
   },
-
   "other_dishes": {
     "palak_paratha": {"protein": 6, "meal_type": ["breakfast", "lunch", "dinner"], "vata_friendly": true},
     "aloo_methi": {"protein": 3, "meal_type": ["lunch", "dinner"], "vata_friendly": true},

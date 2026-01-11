@@ -1,78 +1,83 @@
 import streamlit as st
-import json
-from agent.loader import load_food_data
-from agent.observer import calculate_total_protein_intake
+import pandas as pd
+import plotly.express as px
+from agent.loader import FoodDatabase  # Import the class
+from agent.nutrition_agent import NutritionAgent
 
 # Page Config
-st.set_page_config(page_title="Wellness Agent", page_icon="🥗")
+st.set_page_config(page_title="Wellness Agent", page_icon="🥗", layout="wide")
 
 def run_app():
-    st.title("🥗 Personal Wellness Agent")
-    st.markdown("Log your meals below to calculate your daily protein intake.")
+    st.title("🥗 Agentic Wellness Tracker")
+    
+    # 1. Initialize Data and Agent
+    # Instantiate the class once at the start of the app
+    @st.cache_resource
+    def init_agent():
+        db = FoodDatabase() # Uses default path from your loader.py
+        return NutritionAgent(db.food_info)
 
-    # 1. Load Data
-    food_category, food_info = load_food_data()
+    agent = init_agent()
+    user_goal = st.number_input("Enter your daily protein target (g)", min_value=10, max_value=300, value=80)
 
     # 2. UI Inputs
-    col1, col2, col3 = st.columns(3)
-    
-    with col1:
-        st.subheader("☀️ Breakfast")
-        b_input = st.text_input("e.g. 2 idli + sambar", key="b")
-    with col2:
-        st.subheader("🕛 Lunch")
-        l_input = st.text_input("e.g. 3 roti + chicken_gravy", key="l")
-    with col3:
-        st.subheader("🌙 Dinner")
-        d_input = st.text_input("e.g. grilled_chicken_breast", key="d")
+    st.markdown("Enter meals using `+` to separate items (e.g., *2 eggs + 1 toast*)")
+    col_in1, col_in2, col_in3 = st.columns(3)
+    with col_in1: b = st.text_input("☀️ Breakfast", key="b")
+    with col_in2: l = st.text_input("🕛 Lunch", key="l")
+    with col_in3: d = st.text_input("🌙 Dinner", key="d")
 
-    if st.button("Calculate Daily Total", type="primary"):
-        # 3. Parsing Logic (same as your loader but simplified for UI)
-        def parse_text(text):
-            if not text: return []
-            items = text.split('+')
-            parsed = []
-            for item in items:
-                parts = item.strip().split(' ')
-                if parts[0].isdigit():
-                    qty = int(parts[0])
-                    food = "_".join(parts[1:]).strip().lower()
+    if st.button("Analyze Meals", type="primary"):
+        # Combine and clean inputs
+        raw_input_string = f"{b}+{l}+{d}"
+        # Filter out empty strings if user left a meal blank
+        raw_log = [item.strip() for item in raw_input_string.split("+") if item.strip()]
+        
+        # 3. Agentic Observation
+        total_p, breakdown, missing = agent.observe_intake(raw_log)
+
+        if breakdown:
+            # 4. Data Preparation
+            df = pd.DataFrame(breakdown).groupby("Item")["Protein"].sum().reset_index()
+            df_sorted = df.sort_values(by="Protein", ascending=False)
+            
+            # Prepare Stacked Data
+            plot_df = df_sorted.head(5).copy()
+            others_val = df_sorted.iloc[5:]["Protein"].sum()
+            if others_val > 0:
+                plot_df = pd.concat([plot_df, pd.DataFrame([{"Item": "Others", "Protein": others_val}])])
+            plot_df["Label"] = "Current Intake"
+
+            # 5. UI Layout
+            st.divider()
+            res_col1, res_col2 = st.columns([1, 2])
+
+            with res_col1:
+                st.metric("Total Protein", f"{total_p}g")
+                
+                if missing:
+                    with st.expander("⚠️ Unmatched Items"):
+                        for m in missing:
+                            st.write(f"- {m}")
+                
+                if total_p < user_goal:
+                    st.warning(f"🏃 {round(user_goal - total_p, 1)}g to go!")
                 else:
-                    qty = 1
-                    food = "_".join(parts).strip().lower()
-                parsed.append((food, qty))
-            return parsed
+                    st.success("Target Reached!")
+                    st.balloons()
 
-        # Flatten inputs for the observer
-        all_meals = parse_text(b_input) + parse_text(l_input) + parse_text(d_input)
-        flat_log = {}
-        for food, qty in all_meals:
-            flat_log[food] = flat_log.get(food, 0) + qty
-
-        # 4. Calculate Protein
-        total_protein = calculate_total_protein_intake(food_info, flat_log)
-
-        # 5. Display Results
-        st.divider()
-        st.metric(label="Total Protein Intake", value=f"{total_protein}g")
-
-        if total_protein < 80:
-            st.warning(f"You are {80 - total_protein}g away from your 80g goal.")
-            
-            # 6. Suggestions UI
-            st.subheader("💪 High Protein Snack Suggestions")
-            suggestions = []
-            for food, info in food_info.items():
-                if "snack" in info.get("meal_type", []):
-                    suggestions.append((food.replace('_', ' ').title(), info["protein"]))
-            
-            suggestions.sort(key=lambda x: x[1], reverse=True)
-            
-            # Display suggestions in a clean list
-            for name, prot in suggestions[:5]:
-                st.write(f"• **{name}**: {prot}g protein")
+            with res_col2:
+                fig = px.bar(
+                    plot_df, x="Label", y="Protein", color="Item",
+                    title="Daily Protein Stack", text_auto=True,
+                    color_discrete_sequence=px.colors.qualitative.Vivid
+                )
+                fig.add_hline(y=user_goal, line_dash="dash", line_color="red", 
+                             annotation_text=f"{user_goal}g Goal", annotation_position="top left")
+                fig.update_layout(yaxis_range=[0, max(total_p + 10, user_goal + 10)], xaxis_title="")
+                st.plotly_chart(fig, use_container_width=True)
         else:
-            st.success("Target Reached! You've hit your protein goal for the day.")
+            st.info("No valid food items recognized. Please check your spelling or database.")
 
 if __name__ == "__main__":
     run_app()
