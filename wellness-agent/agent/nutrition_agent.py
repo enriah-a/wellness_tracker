@@ -1,5 +1,3 @@
-# agent/nutrition_agent.py
-
 from rapidfuzz import process
 
 class NutritionAgent:
@@ -17,20 +15,44 @@ class NutritionAgent:
 
     def observe_intake(self, raw_inputs):
         total_p = 0
+        total_i = 0
         breakdown = []
-        missing = []  # <--- Initialize this list
+        missing = []
+        
+        # Q2 Specific Trackers
+        has_meat_or_shake = False
+        has_ghee = False
 
         for item in raw_inputs:
             key, qty = self.interpret(item)
             if key:
-                p = self.food_info[key]["protein"] * qty
+                stats = self.food_info[key]
+                p = stats["protein"] * qty
+                i = stats["iron"] * qty
                 total_p += p
+                total_i += i
+                
+                # Check against Q2 Nourishment goals
+                if stats.get("category") in ["meat", "supplement"]:
+                    has_meat_or_shake = True
+                if "ghee" in key:
+                    has_ghee = True
+
                 breakdown.append({
                     "Item": key.replace('_', ' ').title(),
-                    "Protein": p
+                    "Protein": p,
+                    "Iron": i
                 })
             else:
-                missing.append(item) # <--- Add unmatched items here
+                missing.append(item)
         
-        # Ensure you are returning all THREE values here:
-        return total_p, breakdown, missing
+        return {
+            "protein": total_p,
+            "iron": total_i,
+            "breakdown": breakdown,
+            "missing": missing,
+            "q2_checks": {
+                "meat_or_shake": has_meat_or_shake,
+                "daily_ghee": has_ghee
+            }
+        }
