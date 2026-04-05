@@ -2,80 +2,50 @@ import streamlit as st
 import datetime
 from agent.loader import FoodDatabase 
 from agent.nutrition_agent import NutritionAgent
+from history_manager import HistoryManager
 
-# Page Config: Designed for mobile-first viewing
-st.set_page_config(page_title="Q2 2026 System", page_icon="⚖️", layout="wide")
+st.set_page_config(page_title="Fitness Tracker 2026", page_icon="💪")
+history = HistoryManager()
 
-def run_app():
-    now = datetime.datetime.now()
-    today_name = now.strftime("%A")
-    current_time = now.time()
+st.title("Fitness & Nutrition Tracker")
+
+# --- SECTION 1: LOGGING MEALS ---
+st.subheader("Log Intake")
+meals = st.text_input("Items (e.g., 2 boiled_egg + 1 protein_powder)", placeholder="Use + to separate")
+
+total_p = 0
+total_c = 0
+
+if meals:
+    db = FoodDatabase()
+    agent = NutritionAgent(db.food_info)
+    # Note: Update your NutritionAgent to also return 'calories' from the JSON
+    results = agent.observe_intake([m.strip() for m in meals.split("+")])
     
-    # Time-based state checks
-    is_after_hours = current_time >= datetime.time(20, 30)
-    is_morning = current_time < datetime.time(11, 0)
-
-    # 1. VISUAL FRAME: BOUNDARY AWARENESS
-    if is_after_hours:
-        st.warning("🌙 **Post-8:30 PM: Work fully stopped.**")
-        with st.expander("Bedtime Sequence", expanded=True):
-            st.write("Warm oil → Warm milk (saffron/ghee) → Anulom Vilom")
-            st.caption("Lights out by 10:45pm.")
-    else:
-        st.title("Q2 2026: The Vessel & The Architect")
-
-    # 2. MORNING ANCHOR (Low-effort checklist)
-    with st.expander("Morning Anchor", expanded=is_morning):
-        c1, c2 = st.columns(2)
-        c1.checkbox("Kesar water & Raisins")
-        c1.checkbox("Multivitamins")
-        c2.checkbox("Fruit")
-        c2.checkbox("Hydration: 1L by Noon")
-
-    # 3. NOURISHMENT & THE 6PM BLOCK
-    st.divider()
-    workout_days = ["Monday", "Wednesday", "Friday"]
-    is_workout = today_name in workout_days
+    total_p = results['protein']
+    # If you added calories to your JSON:
+    total_c = sum([db.food_info[item['Item'].lower().replace(' ', '_')].get('calories', 0) for item in results['breakdown']])
     
-    col_block, col_daily = st.columns(2)
-    with col_block:
-        st.subheader(f"6pm Block: {today_name}")
-        if is_workout:
-            st.info("Gym or CULT (Strength) + Kegels")
-        else:
-            st.success("Restore (Walk/Dance/Book) + Kegels")
+    col1, col2 = st.columns(2)
+    col1.metric("Protein", f"{total_p}g")
+    col2.metric("Est. Calories", f"{total_c} kcal")
 
-    with col_daily:
-        st.subheader("Daily Requirements")
-        st.checkbox("Ghee (1 tsp)")
-        st.checkbox("3L Water Total")
+st.divider()
 
-    # 4. BRIDGESPAN FRIDAY
-    if today_name == "Friday":
-        st.info("📤 **Friday Manager Update:** 3 sentences on status & needs.")
+# --- SECTION 2: DAY STATUS & MOOD ---
+st.subheader("End of Day Status")
+col_a, col_b = st.columns(2)
 
-    # 5. MEAL LOGGING (Functional/Direct)
-    st.divider()
-    meals = st.text_input("Log intake (+ separator)", placeholder="e.g. 2 eggs + chicken")
-    
-    if meals:
-        db = FoodDatabase()
-        agent = NutritionAgent(db.food_info)
-        results = agent.observe_intake([m.strip() for m in meals.split("+")])
-        
-        # Displaying results with objective targets
-        p_target = 75 if is_workout else 60
-        
-        m1, m2 = st.columns(2)
-        m1.metric("Protein", f"{results['protein']}g / {p_target}g")
-        m2.metric("Iron", f"{results['iron']}mg / 18mg")
-        
-        if not results['q2_checks']['meat_or_shake']:
-            st.caption("⚠️ Daily meat or protein shake pending.")
+with col_a:
+    day_type = st.selectbox("Activity Level", ["Gym Day", "Activity Day (Walk/Run)", "Rest Day"])
+with col_b:
+    mood = st.select_slider("How are you feeling?", options=["Exhausted", "Tired", "Neutral", "Energetic", "Peak"])
 
-    # 6. TTC GROUNDING
-    if st.button("Grounding Action (Anti-Google)"):
-        st.toast("Breath: Five minutes of silence. Focus on the Vessel.")
+if st.button("Save Daily Log"):
+    history.log_day(total_c, total_p, day_type, mood)
+    st.success("Stats recorded for today!")
 
-if __name__ == "__main__":
-    run_app()
+# --- SECTION 3: RECENT HISTORY ---
+st.divider()
+st.subheader("Progress Log")
+st.dataframe(history.get_history().tail(7), use_container_width=True)

@@ -1,112 +1,83 @@
 {
   "daal_and_gravies": {
-    "sambhar": {"protein": 4.5, "iron": 1.2, "meal_type": ["breakfast", "lunch", "dinner"], "vata_friendly": true},
-    "tur_daal": {"protein": 7.5, "iron": 1.5, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
-    "moong_daal": {"protein": 8.5, "iron": 1.4, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
-    "tur_daal_khichdi": {"protein": 6.5, "iron": 1.3, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
-    "moong_daal_khichdi": {"protein": 7, "iron": 1.2, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
-    "chicken_gravy": {"protein": 15, "iron": 1.5, "meal_type": ["lunch", "dinner"], "vata_friendly": true}
+    "sambhar": {"calories": 150, "protein": 4.5, "iron": 1.2, "meal_type": ["breakfast", "lunch", "dinner"]},
+    "tur_daal": {"calories": 180, "protein": 7.5, "iron": 1.5, "meal_type": ["lunch", "dinner"]},
+    "moong_daal": {"calories": 160, "protein": 8.5, "iron": 1.4, "meal_type": ["lunch", "dinner"]},
+    "tur_daal_khichdi": {"calories": 250, "protein": 6.5, "iron": 1.3, "meal_type": ["lunch", "dinner"]},
+    "moong_daal_khichdi": {"calories": 240, "protein": 7.0, "iron": 1.2, "meal_type": ["lunch", "dinner"]},
+    "chicken_gravy": {"calories": 280, "protein": 15.0, "iron": 1.5, "meal_type": ["lunch", "dinner"]}
   },
   "staples": {
-    "idli": {"protein": 2, "iron": 0.5, "meal_type": ["breakfast", "lunch"], "vata_friendly": true},
-    "dosa": {"protein": 4, "iron": 0.8, "meal_type": ["breakfast", "lunch"], "vata_friendly": true},
-    "roti": {"protein": 3, "iron": 1.0, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
-    "rice": {"protein": 3, "iron": 0.2, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
-    "white_toast": {"protein": 2, "iron": 0.4, "meal_type": ["breakfast", "snack"], "vata_friendly": true},
-    "whole_wheat_toast": {"protein": 4, "iron": 0.9, "meal_type": ["breakfast", "snack"], "vata_friendly": true}
+    "idli": {"calories": 58, "protein": 2.0, "iron": 0.5, "meal_type": ["breakfast", "lunch"]},
+    "dosa": {"calories": 120, "protein": 4.0, "iron": 0.8, "meal_type": ["breakfast", "lunch"]},
+    "roti": {"calories": 85, "protein": 3.0, "iron": 1.0, "meal_type": ["lunch", "dinner"]},
+    "rice": {"calories": 130, "protein": 3.0, "iron": 0.2, "meal_type": ["lunch", "dinner"]},
+    "white_toast": {"calories": 75, "protein": 2.0, "iron": 0.4, "meal_type": ["breakfast", "snack"]},
+    "whole_wheat_toast": {"calories": 80, "protein": 4.0, "iron": 0.9, "meal_type": ["breakfast", "snack"]}
   },
   "probiotics": {
-    "dahi": {"protein": 6, "iron": 0.1, "meal_type": ["breakfast", "snack"], "vata_friendly": true},
-    "greek_yoghurt": {"protein": 10, "iron": 0.1, "meal_type": ["breakfast", "snack"], "vata_friendly": true}
+    "dahi": {"calories": 100, "protein": 6.0, "iron": 0.1, "meal_type": ["breakfast", "snack"]},
+    "greek_yoghurt": {"calories": 130, "protein": 10.0, "iron": 0.1, "meal_type": ["breakfast", "snack"]}
   },
   "dairy_and_protein": {
-    "milk": {"protein": 7, "iron": 0.1, "meal_type": ["breakfast", "snack", "dinner"], "vata_friendly": true},
-    "protein_powder": {"protein": 24, "iron": 0.5, "meal_type": ["breakfast", "snack"], "vata_friendly": true},
-    "boiled_egg": {"protein": 6, "iron": 0.8, "meal_type": ["breakfast", "snack"], "vata_friendly": true},
-    "omelette_2_eggs": {"protein": 12, "iron": 1.6, "meal_type": ["breakfast", "lunch", "dinner"], "vata_friendly": true},
-    "tempeh": {"protein": 14, "iron": 2.5, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
-    "chicken_sausages_2_pcs": {"protein": 10, "iron": 0.8, "meal_type": ["breakfast", "snack"], "vata_friendly": false},
-    "ghee_1_tsp": {"protein": 0, "iron": 0.0, "meal_type": ["breakfast", "lunch", "dinner"], "vata_friendly": true},
-    "grilled_chicken_breast": {"protein": 25, "iron": 1.1, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
-    "zorabian_seekh_kebab": {"protein": 8, "iron": 1.2, "meal_type": ["snack", "lunch", "dinner"], "vata_friendly": true}
-  },
-  "breakfast_cereals": {
-    "oats_with_milk": {"protein": 11, "iron": 1.8, "meal_type": ["breakfast"], "vata_friendly": true},
-    "masala_oats": {"protein": 5, "iron": 1.1, "meal_type": ["breakfast", "snack"], "vata_friendly": true}
+    "milk": {"calories": 120, "protein": 7.0, "iron": 0.1, "meal_type": ["breakfast", "snack", "dinner"]},
+    "protein_powder": {"calories": 120, "protein": 33.0, "iron": 0.5, "meal_type": ["breakfast", "snack"]},
+    "tempeh": {"calories": 195, "protein": 14.0, "iron": 2.5, "meal_type": ["lunch", "dinner"]},
+    "chicken_sausages_2_pcs": {"calories": 150, "protein": 10.0, "iron": 0.8, "meal_type": ["breakfast", "snack"]},
+    "ghee_1_tsp": {"calories": 45, "protein": 0.0, "iron": 0.0, "meal_type": ["breakfast", "lunch", "dinner"]},
+    "grilled_chicken_breast": {"calories": 165, "protein": 25.0, "iron": 1.1, "meal_type": ["lunch", "dinner"]},
+    "zorabian_seekh_kebab": {"calories": 140, "protein": 8.0, "iron": 1.2, "meal_type": ["snack", "lunch", "dinner"]}
   },
   "sabzi": {
-    "baingan_bharta": {"protein": 2, "iron": 0.6, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
-    "paneer_burji": {"protein": 19, "iron": 1.5, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
-    "palak_paneer": {"protein": 13, "iron": 3.2, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
-    "aloo_beans": {"protein": 3, "iron": 1.2, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
-    "cauliflower_curry": {"protein": 3, "iron": 0.8, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
-    "spinach_gravy": {"protein": 3.5, "iron": 2.8, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
-    "cooked_sprouts": {"protein": 10, "iron": 2.2, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
-    "bhindi_masala": {"protein": 2, "iron": 0.7, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
-    "ratalu_methi": {"protein": 4, "iron": 2.1, "meal_type": ["lunch", "dinner"], "vata_friendly": true}
+    "baingan_bharta": {"calories": 120, "protein": 2.0, "iron": 0.6, "meal_type": ["lunch", "dinner"]},
+    "paneer_burji": {"calories": 260, "protein": 19.0, "iron": 1.5, "meal_type": ["lunch", "dinner"]},
+    "palak_paneer": {"calories": 220, "protein": 13.0, "iron": 3.2, "meal_type": ["lunch", "dinner"]},
+    "aloo_beans": {"calories": 110, "protein": 3.0, "iron": 1.2, "meal_type": ["lunch", "dinner"]},
+    "cauliflower_curry": {"calories": 90, "protein": 3.0, "iron": 0.8, "meal_type": ["lunch", "dinner"]},
+    "spinach_gravy": {"calories": 80, "protein": 3.5, "iron": 2.8, "meal_type": ["lunch", "dinner"]},
+    "cooked_sprouts": {"calories": 150, "protein": 10.0, "iron": 2.2, "meal_type": ["lunch", "dinner"]},
+    "bhindi_masala": {"calories": 100, "protein": 2.0, "iron": 0.7, "meal_type": ["lunch", "dinner"]},
+    "ratalu_methi": {"calories": 140, "protein": 4.0, "iron": 2.1, "meal_type": ["lunch", "dinner"]}
   },
-  "fruits": {
-    "apple": {"protein": 0.5, "iron": 0.2, "meal_type": ["snack"], "vata_friendly": true},
-    "banana": {"protein": 1, "iron": 0.3, "meal_type": ["snack"], "vata_friendly": true},
-    "strawberries": {"protein": 1, "iron": 0.4, "meal_type": ["snack"], "vata_friendly": true},
-    "strawberry": {"protein": 1, "iron": 0.4, "meal_type": ["snack"], "vata_friendly": true},
-    "tender_coconut_water": {"protein": 1, "iron": 0.3, "meal_type": ["snack"], "vata_friendly": true},
-    "alphonso_mango": {"protein": 1, "iron": 0.2, "meal_type": ["snack"], "vata_friendly": true}
-  },
-  "dry_fruits": {
-    "date": {"protein": 0.5, "iron": 0.3, "meal_type": ["snack"], "vata_friendly": true},
-    "almond": {"protein": 6, "iron": 1.1, "meal_type": ["snack"], "vata_friendly": true},
-    "cashew": {"protein": 5, "iron": 1.9, "meal_type": ["snack"], "vata_friendly": true},
-    "fig": {"protein": 1, "iron": 0.5, "meal_type": ["snack"], "vata_friendly": true},
-    "peanuts": {"protein": 7, "iron": 1.3, "meal_type": ["snack"], "vata_friendly": true},
-    "mixed_seeds": {"protein": 8, "iron": 2.5, "meal_type": ["snack"], "vata_friendly": true},
-    "date_almond_laddoo": {"protein": 4, "iron": 0.8, "meal_type": ["snack"], "vata_friendly": true}
+  "fruits_and_nuts": {
+    "alphonso_mango": {"calories": 150, "protein": 1.2, "iron": 0.2, "meal_type": ["snack"]},
+    "watermelon": {"calories": 46, "protein": 0.9, "iron": 0.4, "meal_type": ["snack"]},
+    "green_grapes": {"calories": 69, "protein": 0.7, "iron": 0.3, "meal_type": ["snack"]},
+    "apple": {"calories": 95, "protein": 0.5, "iron": 0.2, "meal_type": ["snack"]},
+    "banana": {"calories": 105, "protein": 1.0, "iron": 0.3, "meal_type": ["snack"]},
+    "strawberries": {"calories": 50, "protein": 1.0, "iron": 0.4, "meal_type": ["snack"]},
+    "tender_coconut_water": {"calories": 45, "protein": 1.0, "iron": 0.3, "meal_type": ["snack"]},
+    "date": {"calories": 20, "protein": 0.5, "iron": 0.3, "meal_type": ["snack"]},
+    "almond": {"calories": 160, "protein": 6.0, "iron": 1.1, "meal_type": ["snack"]},
+    "cashew": {"calories": 155, "protein": 5.0, "iron": 1.9, "meal_type": ["snack"]},
+    "fig": {"calories": 37, "protein": 1.0, "iron": 0.5, "meal_type": ["snack"]},
+    "peanuts": {"calories": 165, "protein": 7.0, "iron": 1.3, "meal_type": ["snack"]},
+    "mixed_seeds": {"calories": 180, "protein": 8.0, "iron": 2.5, "meal_type": ["snack"]},
+    "date_almond_laddoo": {"calories": 120, "protein": 4.0, "iron": 0.8, "meal_type": ["snack"]}
   },
   "beverages": {
-    "black_coffee": {"protein": 0, "iron": 0.0, "meal_type": ["breakfast", "snack"], "vata_friendly": false},
-    "coffee_milk_sugar": {"protein": 3, "iron": 0.1, "meal_type": ["breakfast", "snack"], "vata_friendly": true},
-    "masala_chai_milk": {"protein": 3, "iron": 0.2, "meal_type": ["breakfast", "snack"], "vata_friendly": true}
-  },
-  "health_drinks": {
-    "soaked_black_raisins_saffron_water": {"protein": 0.5, "iron": 0.6, "meal_type": ["breakfast", "snack"], "vata_friendly": true},
-    "lipton_cranberry_strawberry_tea": {"protein": 0, "iron": 0.0, "meal_type": ["breakfast", "snack"], "vata_friendly": true},
-    "organic_india_tulsi_honey_ginger_tea": {"protein": 0, "iron": 0.0, "meal_type": ["breakfast", "snack"], "vata_friendly": true}
-  },
-  "snacks_and_sides": {
-    "jaggery_1_tbsp": {"protein": 0.1, "iron": 1.6, "meal_type": ["breakfast", "snack", "dessert"], "vata_friendly": true},
-    "coconut_chutney": {"protein": 2, "iron": 0.6, "meal_type": ["breakfast", "lunch"], "vata_friendly": true},
-    "hummus": {"protein": 3, "iron": 1.5, "meal_type": ["snack", "lunch"], "vata_friendly": true},
-    "peanut_butter": {"protein": 4, "iron": 0.6, "meal_type": ["breakfast", "snack"], "vata_friendly": true},
-    "TWT_chocolate_bar": {"protein": 6, "iron": 1.2, "meal_type": ["snack"], "vata_friendly": true}
+    "chaayos_ginger_tea": {"calories": 90, "protein": 2.5, "iron": 0.2, "meal_type": ["breakfast", "snack"]},
+    "machine_cappuccino": {"calories": 110, "protein": 4.0, "iron": 0.1, "meal_type": ["breakfast", "snack"]},
+    "black_coffee": {"calories": 2, "protein": 0.0, "iron": 0.0, "meal_type": ["breakfast", "snack"]},
+    "coffee_milk_sugar": {"calories": 60, "protein": 3.0, "iron": 0.1, "meal_type": ["breakfast", "snack"]},
+    "masala_chai_milk": {"calories": 55, "protein": 3.0, "iron": 0.2, "meal_type": ["breakfast", "snack"]}
   },
   "legumes": {
-    "rajma": {"protein": 11, "iron": 2.9, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
-    "chole": {"protein": 10, "iron": 2.5, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
-    "sprouts": {"protein": 10, "iron": 2.2, "meal_type": ["lunch", "dinner"], "vata_friendly": true}
+    "rajma": {"calories": 210, "protein": 11.0, "iron": 2.9, "meal_type": ["lunch", "dinner"]},
+    "chole": {"calories": 220, "protein": 10.0, "iron": 2.5, "meal_type": ["lunch", "dinner"]}
   },
-  "order_in_and_outside_food": {
-    "chicken_momos_steamed": {"protein": 12, "iron": 1.1, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
-    "chicken_sandwich": {"protein": 20, "iron": 1.8, "meal_type": ["lunch", "dinner"], "vata_friendly": false},
-    "veg_pasta_white_sauce": {"protein": 8, "iron": 1.2, "meal_type": ["lunch", "dinner"], "vata_friendly": false},
-    "veg_pasta_red_sauce": {"protein": 7, "iron": 1.5, "meal_type": ["lunch", "dinner"], "vata_friendly": false},
-    "subway_paneer_tikka_6_inch": {"protein": 18, "iron": 1.8, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
-    "subway_roasted_chicken_6_inch": {"protein": 22, "iron": 2.1, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
-    "mcdonalds_aloo_tikki_burger": {"protein": 7, "iron": 1.4, "meal_type": ["lunch", "dinner", "snack"], "vata_friendly": false},
-    "mutton_biryani": {"protein": 12, "iron": 2.8, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
-    "salmon_sushi": {"protein": 6, "iron": 0.5, "meal_type": ["lunch", "dinner", "snack"], "vata_friendly": true}
-  },
-  "desserts": {
-    "chocolate_ice_cream": {"protein": 4, "iron": 0.5, "meal_type": ["snack", "dessert"], "vata_friendly": false},
-    "vanilla_ice_cream": {"protein": 3, "iron": 0.1, "meal_type": ["snack", "dessert"], "vata_friendly": false},
-    "mango_ice_cream": {"protein": 2.5, "iron": 0.1, "meal_type": ["snack", "dessert"], "vata_friendly": false},
-    "gajar_halwa": {"protein": 3, "iron": 0.7, "meal_type": ["snack", "dessert"], "vata_friendly": false},
-    "gulab_jamun": {"protein": 2, "iron": 0.4, "meal_type": ["snack", "dessert"], "vata_friendly": false}
+  "order_out": {
+    "pork_momos_steamed": {"calories": 320, "protein": 14.0, "iron": 1.2, "meal_type": ["lunch", "dinner"]},
+    "chicken_momos_steamed": {"calories": 250, "protein": 12.0, "iron": 1.1, "meal_type": ["lunch", "dinner"]},
+    "subway_paneer_tikka_6_inch": {"calories": 420, "protein": 18.0, "iron": 1.8, "meal_type": ["lunch", "dinner"]},
+    "subway_roasted_chicken_6_inch": {"calories": 320, "protein": 22.0, "iron": 2.1, "meal_type": ["lunch", "dinner"]},
+    "salmon_sushi": {"calories": 200, "protein": 6.0, "iron": 0.5, "meal_type": ["lunch", "dinner", "snack"]}
   },
   "other_dishes": {
-    "palak_paratha": {"protein": 6, "iron": 2.2, "meal_type": ["breakfast", "lunch", "dinner"], "vata_friendly": true},
-    "aloo_methi": {"protein": 3, "iron": 2.4, "meal_type": ["lunch", "dinner"], "vata_friendly": true},
-    "methi_paratha": {"protein": 5, "iron": 2.6, "meal_type": ["breakfast", "lunch", "dinner"], "vata_friendly": true},
-    "poha": {"protein": 3, "iron": 2.1, "meal_type": ["breakfast"], "vata_friendly": true},
-    "upma": {"protein": 4, "iron": 0.9, "meal_type": ["breakfast"], "vata_friendly": true}
+    "beetroot_paratha": {"calories": 190, "protein": 5.5, "iron": 1.8, "meal_type": ["breakfast", "lunch", "dinner"]},
+    "palak_paratha": {"calories": 180, "protein": 6.0, "iron": 2.2, "meal_type": ["breakfast", "lunch", "dinner"]},
+    "methi_paratha": {"calories": 185, "protein": 5.0, "iron": 2.6, "meal_type": ["breakfast", "lunch", "dinner"]},
+    "poha": {"calories": 210, "protein": 3.0, "iron": 2.1, "meal_type": ["breakfast"]},
+    "upma": {"calories": 190, "protein": 4.0, "iron": 0.9, "meal_type": ["breakfast"]}
   }
 }
