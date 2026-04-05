@@ -2,7 +2,7 @@ import streamlit as st
 import datetime
 from agent.loader import FoodDatabase 
 from agent.nutrition_agent import NutritionAgent
-from history_manager import HistoryManager
+import history_manager
 
 st.set_page_config(page_title="Fitness Tracker 2026", page_icon="💪")
 history = HistoryManager()
