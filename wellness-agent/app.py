@@ -2,50 +2,48 @@ import streamlit as st
 import datetime
 from agent.loader import FoodDatabase 
 from agent.nutrition_agent import NutritionAgent
-import history_manager
+from history_manager import HistoryManager
 
-st.set_page_config(page_title="Fitness Tracker 2026", page_icon="💪")
+st.set_page_config(page_title="Fitness 2026", page_icon="💪")
 history = HistoryManager()
 
 st.title("Fitness & Nutrition Tracker")
 
-# --- SECTION 1: LOGGING MEALS ---
+# 1. LOGGING
 st.subheader("Log Intake")
-meals = st.text_input("Items (e.g., 2 boiled_egg + 1 protein_powder)", placeholder="Use + to separate")
+meals = st.text_input("Items (e.g. 2 roti + 1 chicken_gravy)", placeholder="Use + to separate")
 
-total_p = 0
-total_c = 0
+current_p = 0
+current_c = 0
 
 if meals:
     db = FoodDatabase()
     agent = NutritionAgent(db.food_info)
-    # Note: Update your NutritionAgent to also return 'calories' from the JSON
     results = agent.observe_intake([m.strip() for m in meals.split("+")])
     
-    total_p = results['protein']
-    # If you added calories to your JSON:
-    total_c = sum([db.food_info[item['Item'].lower().replace(' ', '_')].get('calories', 0) for item in results['breakdown']])
+    current_p = results.get('protein', 0)
+    # Calculate calories from the updated JSON
+    current_c = sum([db.food_info[item['Item'].lower().replace(' ', '_')].get('calories', 0) for item in results['breakdown']])
     
     col1, col2 = st.columns(2)
-    col1.metric("Protein", f"{total_p}g")
-    col2.metric("Est. Calories", f"{total_c} kcal")
+    col1.metric("Logged Protein", f"{current_p}g")
+    col2.metric("Logged Calories", f"{current_c} kcal")
 
 st.divider()
 
-# --- SECTION 2: DAY STATUS & MOOD ---
-st.subheader("End of Day Status")
-col_a, col_b = st.columns(2)
+# 2. STATUS & SAVE
+st.subheader("Daily Status")
+c1, c2 = st.columns(2)
+with c1:
+    day_type = st.selectbox("Activity", ["Gym Day", "Activity Day", "Rest Day"])
+with c2:
+    mood = st.select_slider("Mood", options=["Tired", "Neutral", "Energetic"])
 
-with col_a:
-    day_type = st.selectbox("Activity Level", ["Gym Day", "Activity Day (Walk/Run)", "Rest Day"])
-with col_b:
-    mood = st.select_slider("How are you feeling?", options=["Exhausted", "Tired", "Neutral", "Energetic", "Peak"])
+if st.button("Save to History"):
+    history.log_day(current_c, current_p, day_type, mood)
+    st.success(f"Added {current_p}g protein to today's log.")
 
-if st.button("Save Daily Log"):
-    history.log_day(total_c, total_p, day_type, mood)
-    st.success("Stats recorded for today!")
-
-# --- SECTION 3: RECENT HISTORY ---
+# 3. HISTORY TABLE
 st.divider()
-st.subheader("Progress Log")
+st.subheader("Weekly Progress")
 st.dataframe(history.get_history().tail(7), use_container_width=True)
